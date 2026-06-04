@@ -4,7 +4,10 @@
     "src/components/Board.tsx",
     "src/components/Tile.tsx",
     "src/components/CookiePopup.tsx",
-    "src/store/index.ts"
+    "src/store/index.ts",
+    "src/store/userSlice.ts",
+    "src/store/settingsSlice.ts",
+    "src/store/resultsSlice.ts"
   ],
   "out": "docs",
   "name": "Standardization Labs - Lab 1 Documentation",
