@@ -4,6 +4,7 @@ import { GamePage } from './pages/GamePage';
 import { SettingsPage } from './pages/SettingsPage';
 import { ResultsTablePage } from './pages/ResultsTablePage';
 import { useStore } from './store';
+import { CookiePopup } from './components/CookiePopup';
 
 function App() {
   const userId = useStore((state) => state.userId);
@@ -20,6 +21,7 @@ function App() {
             element={userId ? <GamePage /> : <Navigate to="/settings" replace />} 
           />
         </Routes>
+        <CookiePopup />
       </div>
     </BrowserRouter>
   );
