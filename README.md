@@ -1,6 +1,6 @@
-# 15-Puzzle Game (Lab 1: Standardization & Best Practices)
+# 15-Puzzle Game
 
-A visually stunning, glassmorphic 15-Puzzle game built with **React**, **Vite**, **TypeScript**, and **Tailwind CSS (v4)**. This project demonstrates best practices in project organization, licensing audits, GDPR compliance, automated API documentation, and component catalogs (Storybook).
+A visually stunning, glassmorphic 15-Puzzle game built with **React**, **Vite**, **TypeScript**, and **Tailwind CSS (v4)**. This project includes GDPR-compliant cookie consent, auto-generated documentation, and interactive component catalogs.
 
 ---
 

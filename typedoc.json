@@ -10,7 +10,7 @@
     "src/store/resultsSlice.ts"
   ],
   "out": "docs",
-  "name": "Standardization Labs - Lab 1 Documentation",
+  "name": "15-Puzzle Game API Documentation",
   "includeVersion": true,
   "excludePrivate": true,
   "tsconfig": "./tsconfig.app.json"
