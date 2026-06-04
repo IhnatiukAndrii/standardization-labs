@@ -6,8 +6,7 @@ A visually stunning, glassmorphic 15-Puzzle game built with **React**, **Vite**,
 
 ## 👤 Authorship
 - **Author**: Andrii Ihnatiuk
-- **Group**: ZTU (another)
-- **Lab Assignment**: Laboratory Work #1 - Standardization, Compliance, and Tools
+- **Group**: IPZ-23-1
 
 ---
 

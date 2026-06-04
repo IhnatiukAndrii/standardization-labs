@@ -60,5 +60,4 @@ Under the GDPR, you have the right to access, rectify, or erase your data. Since
 ## 3. Contact & Authorship
 
 - **Author**: Andrii Ihnatiuk
-- **Project**: standardization-labs (Lab 1)
-- **License**: MIT
+- **Group**: IPZ-23-1
