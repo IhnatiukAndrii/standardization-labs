@@ -15,14 +15,14 @@ export const useGame = (boardSize: number) => {
     return `${min}:${sec}`;
   };
 
-  const checkWin = (currentTiles: number[]) => {
+  const checkWin = useCallback((currentTiles: number[]) => {
     for (let i = 0; i < totalTiles - 1; i++) {
       if (currentTiles[i] !== i + 1) return false;
     }
     return currentTiles[totalTiles - 1] === 0;
-  };
+  }, [totalTiles]);
 
-  const isSolvable = (puzzle: number[]) => {
+  const isSolvable = useCallback((puzzle: number[]) => {
     let inversions = 0;
     let emptyRow = 0;
     
@@ -48,9 +48,9 @@ export const useGame = (boardSize: number) => {
         return inversions % 2 === 0;
       }
     }
-  };
+  }, [boardSize]);
 
-  const shuffleTiles = () => {
+  const shuffleTiles = useCallback(() => {
     let newTiles: number[] = [];
     do {
       newTiles = Array.from({ length: totalTiles }, (_, i) => i);
@@ -65,11 +65,20 @@ export const useGame = (boardSize: number) => {
     setElapsedSeconds(0);
     setIsWon(false);
     setIsActive(true);
-  };
+  }, [totalTiles, isSolvable, checkWin]);
 
   useEffect(() => {
-    shuffleTiles();
-  }, [boardSize]);
+    let ignore = false;
+    const timer = setTimeout(() => {
+      if (!ignore) {
+        shuffleTiles();
+      }
+    }, 0);
+    return () => {
+      ignore = true;
+      clearTimeout(timer);
+    };
+  }, [shuffleTiles]);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -105,7 +114,7 @@ export const useGame = (boardSize: number) => {
         setIsActive(false);
       }
     }
-  }, [tiles, isWon, isActive, boardSize]);
+  }, [tiles, isWon, isActive, boardSize, checkWin]);
 
   const abandonGame = () => {
     setIsActive(false);

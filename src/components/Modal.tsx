@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -8,28 +8,24 @@ interface ModalProps {
 }
 
 export const Modal = ({ children, isOpen }: ModalProps) => {
-  const elRef = useRef<HTMLDivElement | null>(null);
-
-  if (!elRef.current) {
-    elRef.current = document.createElement('div');
-  }
+  const [container] = useState(() => document.createElement('div'));
 
   useEffect(() => {
     const modalRoot = document.getElementById('root');
-    if (!modalRoot || !elRef.current) return;
+    if (!modalRoot) return;
 
     if (isOpen) {
-      modalRoot.appendChild(elRef.current);
+      modalRoot.appendChild(container);
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
       document.body.style.overflow = '';
-      if (elRef.current && modalRoot.contains(elRef.current)) {
-        modalRoot.removeChild(elRef.current);
+      if (modalRoot.contains(container)) {
+        modalRoot.removeChild(container);
       }
     };
-  }, [isOpen]);
+  }, [isOpen, container]);
 
   if (!isOpen) return null;
 
@@ -41,6 +37,6 @@ export const Modal = ({ children, isOpen }: ModalProps) => {
         {children}
       </div>
     </div>,
-    elRef.current
+    container
   );
 };

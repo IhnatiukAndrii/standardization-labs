@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from './Button';
 import { Modal } from './Modal';
 
@@ -11,27 +11,34 @@ export interface CookiePreferences {
 const STORAGE_KEY = 'lab1-cookie-consent';
 
 export const CookiePopup = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
-  const [preferences, setPreferences] = useState<CookiePreferences>({
-    necessary: true,
-    analytics: false,
-    marketing: false,
-  });
-
-  useEffect(() => {
+  const [preferences, setPreferences] = useState<CookiePreferences>(() => {
     const savedConsent = localStorage.getItem(STORAGE_KEY);
-    if (!savedConsent) {
-      setIsVisible(true);
-    } else {
+    if (savedConsent) {
       try {
-        const parsed = JSON.parse(savedConsent);
-        setPreferences(parsed);
-      } catch (e) {
-        setIsVisible(true);
+        return JSON.parse(savedConsent);
+      } catch {
+        // Fallback to default preferences
       }
     }
-  }, []);
+    return {
+      necessary: true,
+      analytics: false,
+      marketing: false,
+    };
+  });
+
+  const [isVisible, setIsVisible] = useState<boolean>(() => {
+    const savedConsent = localStorage.getItem(STORAGE_KEY);
+    if (!savedConsent) return true;
+    try {
+      JSON.parse(savedConsent);
+      return false;
+    } catch {
+      return true;
+    }
+  });
+
+  const [showConfigModal, setShowConfigModal] = useState<boolean>(false);
 
   const saveConsent = (updatedPrefs: CookiePreferences) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedPrefs));
