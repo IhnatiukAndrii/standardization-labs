@@ -1,11 +1,25 @@
 import type { ButtonHTMLAttributes } from 'react';
 
+/**
+ * Supported visual styles for the button component.
+ */
 type ButtonVariant = 'primary' | 'secondary' | 'danger';
 
+/**
+ * Properties for the Button component.
+ */
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * The visual style variant of the button.
+   * @defaultValue 'primary'
+   */
   variant?: ButtonVariant;
 }
 
+/**
+ * A reusable, premium-styled interactive button component.
+ * Supports hover animations, active scaling, and customizable variants.
+ */
 export const Button = ({ children, variant = 'primary', className = '', ...props }: ButtonProps) => {
   const base = 'px-6 py-3 rounded-2xl font-bold transition-all duration-300 transform active:scale-95 outline-none flex items-center justify-center gap-2';
   

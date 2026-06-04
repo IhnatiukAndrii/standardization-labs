@@ -1,9 +1,25 @@
+/**
+ * Properties for the individual Tile component in the puzzle.
+ */
 interface TileProps {
+  /**
+   * The numeric value shown on the tile.
+   */
   value: number;
+  /**
+   * Indicates whether the tile is empty/blank.
+   */
   isEmpty?: boolean;
+  /**
+   * Callback event triggered when the tile is clicked.
+   */
   onClick: () => void;
 }
 
+/**
+ * An individual square tile in the 15-Puzzle board.
+ * Supports active feedback, gradients, and hover transitions.
+ */
 export const Tile = ({ value, isEmpty, onClick }: TileProps) => {
   if (isEmpty) {
     return <div className="w-16 h-16 sm:w-20 sm:h-20 sm:max-w-24 sm:max-h-24 rounded-2xl bg-slate-100/50 shadow-inner"></div>;

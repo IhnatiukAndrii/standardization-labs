@@ -1,0 +1,14 @@
+{
+  "entryPoints": [
+    "src/components/Button.tsx",
+    "src/components/Board.tsx",
+    "src/components/Tile.tsx",
+    "src/components/CookiePopup.tsx",
+    "src/store/index.ts"
+  ],
+  "out": "docs",
+  "name": "Standardization Labs - Lab 1 Documentation",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "tsconfig": "./tsconfig.app.json"
+}
