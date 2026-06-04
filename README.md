@@ -1,73 +1,112 @@
-# React + TypeScript + Vite
+# 15-Puzzle Game (Lab 1: Standardization & Best Practices)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A visually stunning, glassmorphic 15-Puzzle game built with **React**, **Vite**, **TypeScript**, and **Tailwind CSS (v4)**. This project demonstrates best practices in project organization, licensing audits, GDPR compliance, automated API documentation, and component catalogs (Storybook).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 👤 Authorship
+- **Author**: Andrii Ihnatiuk
+- **Group**: ZTU (another)
+- **Lab Assignment**: Laboratory Work #1 - Standardization, Compliance, and Tools
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack & Key Integrations
+- **Core Framework**: React 19, TypeScript 5, Vite 8, Tailwind CSS v4
+- **Routing & State**: React Router 7, Zustand 5, React Hook Form 7
+- **Compliance & Auditing**: GDPR Cookie Consent, License-Checker
+- **Documentation**: TypeDoc (JSDoc/TSDoc to HTML)
+- **Component Catalog**: Storybook 10 (React-Vite)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ⚙️ Configuration & Local Setup
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) (v18+) installed on your machine.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+Clone the repository and install dependencies:
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Development Scripts
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Here are the basic commands to run, build, and audit the application:
+
+### Run the App Locally
+Launches the local development server:
+```bash
+npm run dev
 ```
+Open `http://localhost:5173` in your browser.
+
+### Build for Production
+Compiles TypeScript and bundles files for production:
+```bash
+npm run build
+```
+Production assets are generated in the `dist/` directory.
+
+### Run Linter
+Executes ESLint with typescript-eslint rules:
+```bash
+npm run lint
+```
+
+### Preview Production Build
+Runs a local web server serving the `dist/` folder:
+```bash
+npm run preview
+```
+
+---
+
+## 📖 Codebase Documentation (TypeDoc)
+We use **TypeDoc** to generate type-safe HTML documentation from TSDoc comments in the codebase.
+
+### Generate Documentation
+To generate the latest HTML documentation:
+```bash
+npx typedoc
+```
+The output will be placed in the [docs/](./docs) folder. Open [docs/index.html](./docs/index.html) in your browser to explore the API.
+
+---
+
+## 🎨 Storybook (Component Catalog)
+We use **Storybook** to document, preview, and test our UI components in isolation. We have structured stories for `Button` (basic component) and `Board` (complex component).
+
+### Run Storybook
+Starts the interactive Storybook dashboard locally:
+```bash
+npm run storybook
+```
+Open `http://localhost:6006` in your browser.
+
+### Build Storybook
+Builds a static, deployable site for Storybook:
+```bash
+npm run build-storybook
+```
+Generated files are placed in the `storybook-static/` directory.
+
+---
+
+## 🛡️ GDPR Compliance & Cookie Banner
+This application is fully compliant with General Data Protection Regulation (GDPR) standards:
+- **No Remote Tracking**: All settings and high scores are stored client-side in `localStorage`.
+- **Granular Cookie Consent Popup**: On first visit, users are presented with a glassmorphic consent banner to accept, reject, or customize storage settings.
+- **Preferences Modal**: Users can toggle between *Necessary* (always on), *Analytics* (scores tracking), and *Marketing* (currently unused) categories.
+
+Learn more in our [Privacy Policy & EULA](./PRIVACY_POLICY.md).
+
+---
+
+## 📄 Licensing & Audits
+- The project is licensed under the [MIT License](./LICENSE).
+- All dependencies have been audited using `license-checker` to ensure open-source compatibility.
+- You can review the generated third-party license report here: [license-report.md](./license-report.md).
