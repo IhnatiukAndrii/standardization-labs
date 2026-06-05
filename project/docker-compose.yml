@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: watchshop-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: watchuser
+      POSTGRES_PASSWORD: watchpass
+      POSTGRES_DB: watchdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U watchuser -d watchdb" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  next:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: watchshop-next
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://watchuser:watchpass@postgres:5432/watchdb"
+      NEXTAUTH_SECRET: "SdcTseFGMswx50PpSexYfVl23sZSzhSamM17PLB5Q1k="
+      NEXTAUTH_URL: "http://localhost:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
